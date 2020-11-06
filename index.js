@@ -13,14 +13,12 @@ The function should:
   2. Create and return an object using the received values  
 */
 
-function createMenuItem(menuObject,inputName,inputPrice,inputCategory){
-  menuObject = {
-     name: inputName,
-     price: inputPrice,
-     category: inputCategory
-   }
-   return menuObject;
+function createMenuItem(name,price,category){
+   return {name, price, category};
 }
+
+let test = createMenuItem("water",1,"drinks")
+console.log(test.name)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Test your createMenuItems function by doing the following:
@@ -163,10 +161,18 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
-  }
+function getReviewByRating(reviewArray,inputRating) {
+  var resultsArray = [];
+ var i
+   for (i in reviewArray){
+     if (reviewArray[i].rating >= Math.floor(inputRating) && reviewArray[i].rating < Math.floor(inputRating)+1) {
+       resultsArray.push(reviewArray[i])
+     }
+   }
+   return resultsArray
+ }
 
+ console.log(getReviewByRating(reviews,4))
   
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
@@ -181,9 +187,17 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
-  }
+function getLongReviews(reviewArray) {
+  var resultsArray = [];
+  var i
+    for (i in reviewArray){
+      if (reviewArray[i].feedback.split(" ").length >= 15) {
+        resultsArray.push(reviewArray[i])
+      }
+    }
+        return resultsArray
+}
+  console.log(getLongReviews(reviews))
   
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
@@ -204,11 +218,18 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odometerReading) {
+
+  this.odometer = odometerReading,
+  this.drive = function (dist){
+  this.odometer = odometerReading + dist
+  return this.odometer
+}
 }
 
+let car1 = new carMaker(1000)   
+console.log(car1.drive(100))
+    
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
